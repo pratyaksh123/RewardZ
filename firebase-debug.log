@@ -1,0 +1,12 @@
+[debug] [2020-12-10T19:58:34.308Z] ----------------------------------------------------------------------
+[debug] [2020-12-10T19:58:34.310Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\pratyaksh\AppData\Local\Yarn\Data\global\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2020-12-10T19:58:34.310Z] CLI Version:   8.2.0
+[debug] [2020-12-10T19:58:34.310Z] Platform:      win32
+[debug] [2020-12-10T19:58:34.311Z] Node Version:  v12.18.1
+[debug] [2020-12-10T19:58:34.312Z] Time:          Fri Dec 11 2020 01:28:34 GMT+0530 (India Standard Time)
+[debug] [2020-12-10T19:58:34.312Z] ----------------------------------------------------------------------
+[debug] [2020-12-10T19:58:34.312Z] 
+[debug] [2020-12-10T19:58:34.319Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-10T19:58:34.321Z] > authorizing via signed-in user
+[error] 
+[error] Error: Not in a Firebase app directory (could not locate firebase.json)
