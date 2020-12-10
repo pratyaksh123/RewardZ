@@ -8,16 +8,23 @@ import {
 } from 'react-native';
 
 import RazorpayCheckout from 'react-native-razorpay';
+import {firebase} from '@react-native-firebase/functions';
 
-export default class ButtonBasics extends Component {
-  _onPressButton() {
+class ButtonBasics extends Component {
+  async _onPressButton() {
+    const {data} = await firebase.functions().httpsCallable('order')({
+      amount: parseInt(100),
+    });
+    console.log(data);
+
     var options = {
-      description: 'Credits towards consultation',
+      description: 'Semester Fees',
       image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
       key: 'rzp_test_gUXuZCNgRyKBmN',
-      amount: '5000',
-      name: 'foo',
+      order_id: `${data.id}`,
+      amount: `${data.amount}`,
+      name: 'Pratyaksh Tyagi',
       prefill: {
         email: 'void@razorpay.com',
         contact: '9191919191',
@@ -61,3 +68,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
+export default ButtonBasics;

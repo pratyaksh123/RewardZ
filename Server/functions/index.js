@@ -7,16 +7,21 @@ var instance = new Razorpay({
   key_secret: key_secret,
 });
 
-exports.order = functions.https.onCall((data) => {
+exports.order = functions.https.onCall(async (data) => {
   const {amount} = data;
   var options = {
-    amount: amount, // amount in the smallest currency unit
+    amount: amount ? amount : 20, // amount in the smallest currency unit
     currency: 'INR',
     receipt: 'order_rcptid_11',
   };
-  var order_id;
-  instance.orders.create(options, function (err, order) {
-    order_id = order;
+  var orderData;
+  await instance.orders.create(options, function (err, order) {
+    if (err) {
+      console.log(err);
+      return err;
+    }
+    orderData = order;
   });
-  return order_id;
+  console.log(orderData);
+  return orderData;
 });

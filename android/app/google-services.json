@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "184853695677",
+    "project_id": "rewardz-34fdb",
+    "storage_bucket": "rewardz-34fdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184853695677:android:fcd5b0d3b2a48a2f1e7bd4",
+        "android_client_info": {
+          "package_name": "com.rewardz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184853695677-e237r39gkqr7lr8dq1jb0dj20da6qb5n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaoMHEkTsOaGP5w9DJFI2K0kiAkkVU5ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184853695677-e237r39gkqr7lr8dq1jb0dj20da6qb5n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

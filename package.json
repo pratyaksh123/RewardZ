@@ -10,6 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-firebase/app": "^10.1.0",
+    "@react-native-firebase/functions": "^10.1.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-razorpay": "^2.2.2"
