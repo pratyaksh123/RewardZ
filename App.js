@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Button,
   StyleSheet,
@@ -6,13 +6,14 @@ import {
   NativeModules,
   NativeEventEmitter,
 } from 'react-native';
+import Navigator from './App/Navigator/Stack';
 
 import RazorpayCheckout from 'react-native-razorpay';
-import {firebase} from '@react-native-firebase/functions';
+import { firebase } from '@react-native-firebase/functions';
 
 class ButtonBasics extends Component {
   async _onPressButton() {
-    const {data} = await firebase.functions().httpsCallable('order')({
+    const { data } = await firebase.functions().httpsCallable('order')({
       amount: parseInt(100),
     });
     console.log(data);
@@ -30,7 +31,7 @@ class ButtonBasics extends Component {
         contact: '9191919191',
         name: 'Razorpay Software',
       },
-      theme: {color: '#F37254'},
+      theme: { color: '#F37254' },
     };
     RazorpayCheckout.open(options)
       .then((data) => {
@@ -69,4 +70,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ButtonBasics;
+// Wrap Here with a HOC if required.
+export default () => {
+  return <Navigator />;
+};

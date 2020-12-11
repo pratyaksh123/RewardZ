@@ -8,7 +8,7 @@ var instance = new Razorpay({
 });
 
 exports.order = functions.https.onCall(async (data) => {
-  const {amount} = data;
+  const { amount } = data;
   var options = {
     amount: amount ? amount : 20, // amount in the smallest currency unit
     currency: 'INR',
