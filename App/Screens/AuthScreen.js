@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ImageBackground } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 const AuthScreen = ({ params }) => {
@@ -23,7 +23,13 @@ const AuthScreen = ({ params }) => {
   if (!user) {
     return (
       <View>
-        <Text>Login</Text>
+        <View>
+          <ImageBackground
+            source={require('../Assets/Images/finance.png')}
+            style={{ width: 300, height: 200, alignSelf: 'center' }}
+            resizeMode="contain"
+          />
+        </View>
       </View>
     );
   }
