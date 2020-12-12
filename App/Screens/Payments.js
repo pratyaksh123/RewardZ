@@ -20,13 +20,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const PaymentScreen = ({ params }) => {
   const [text, setText] = useState(null);
   const [coupons, setCoupons] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [couponApplied, setApplied] = React.useState({
     applied: false,
     value: 0,
   });
   const [modalVisible, setModalVisible] = useState(false);
   const [score, setScore] = useState(0);
+
   const _onPressButton = async () => {
+    setLoading(true);
     const { data } = await firebase.functions().httpsCallable('order')({
       amount: (parseInt(text) - couponApplied.value) * 100,
     });
@@ -67,8 +70,9 @@ const PaymentScreen = ({ params }) => {
         contact: '9191919191',
         name: 'Razorpay Software',
       },
-      theme: { color: '#F37254' },
+      theme: { color: '#800080' },
     };
+    setLoading(false);
     RazorpayCheckout.open(options)
       .then((data) => {
         // handle success
@@ -77,10 +81,15 @@ const PaymentScreen = ({ params }) => {
       .catch((error) => {
         // handle failure
         console.log(error);
+        firestore().collection('Payments').add({
+          value: text,
+          sucess: false,
+          data: data,
+        });
         Alert.alert(`Error`, `${error.description}`);
       });
   };
-  console.log(couponApplied);
+
   const fetchCoupons = () => {
     firestore()
       .collection('Coupons')
@@ -159,6 +168,7 @@ const PaymentScreen = ({ params }) => {
             style={{ width: 150, alignSelf: 'center' }}
             mode="contained"
             onPress={_onPressButton}
+            loading={loading}
           >
             Pay Now
           </Button>
@@ -222,7 +232,6 @@ const PaymentScreen = ({ params }) => {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    console.log(t);
                     redeemCoupons(t);
                   }}
                 >

@@ -135,26 +135,54 @@ const HomeScreen = ({ navigation }) => {
             <FlatList
               data={history}
               renderItem={(t) => {
-                return (
-                  <List.Item
-                    titleStyle={{ color: 'green', fontSize: 15 }}
-                    style={{ alignItems: 'center', justifyContent: 'center' }}
-                    title={`Payment Recived`}
-                    right={() => (
-                      <Text
-                        style={{ color: 'green', fontSize: 15 }}
-                      >{`₹${t.item.data.value}`}</Text>
-                    )}
-                    left={(props) => (
-                      <Icon
-                        name="check-circle"
-                        size={20}
-                        style={{ alignSelf: 'center' }}
-                        color="green"
-                      />
-                    )}
-                  />
-                );
+                console.log(t);
+                if (t.item.data.sucess) {
+                  return (
+                    <List.Item
+                      titleStyle={{ color: 'green', fontSize: 15 }}
+                      style={{ alignItems: 'center', justifyContent: 'center' }}
+                      title={`Payment Recived`}
+                      right={() => {
+                        return (
+                          <Text
+                            style={{ color: 'green', fontSize: 15 }}
+                          >{`₹${t.item.data.value}`}</Text>
+                        );
+                      }}
+                      left={(props) => (
+                        <Icon
+                          name="check-circle"
+                          size={20}
+                          style={{ alignSelf: 'center' }}
+                          color="green"
+                        />
+                      )}
+                    />
+                  );
+                } else {
+                  return (
+                    <List.Item
+                      titleStyle={{ color: 'red', fontSize: 15 }}
+                      style={{ alignItems: 'center', justifyContent: 'center' }}
+                      title={`Payment Declined`}
+                      right={() => {
+                        return (
+                          <Text
+                            style={{ color: 'red', fontSize: 15 }}
+                          >{`₹${t.item.data.value}`}</Text>
+                        );
+                      }}
+                      left={(props) => (
+                        <Icon
+                          name="times-circle-o"
+                          size={20}
+                          style={{ alignSelf: 'center' }}
+                          color="red"
+                        />
+                      )}
+                    />
+                  );
+                }
               }}
             />
 
