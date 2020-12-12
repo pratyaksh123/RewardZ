@@ -25,7 +25,7 @@ https://razorpay.com/docs/api/orders/
 
 ## Installation ( Android App )
 - Download the apk from release artifacts [here](https://github.com/pratyaksh123/RewardZ/releases/tag/v1.0.1)
-
+- Make sure you have an Active Internet Connection whlie running the app
 
 ## Steps to setup locally and run:
 If you run into any errors , refer to the Environment setup on the official React Native Docs - [Environment-Setup](https://reactnative.dev/docs/environment-setup)
