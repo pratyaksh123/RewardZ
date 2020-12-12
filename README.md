@@ -1,15 +1,15 @@
 # Rewardz
 Earn while you learn !
 
-#### What ?
-This apps lets you earn credits while you pay,attend classes, learn and solve  assignments. You can later redeem those credits for coupons for various uses.
+### What ?
+This apps lets you earn credits while you do payments like your fees,attend classes, learn stuff and solve assignments. You can later redeem those credits for coupons for various uses.
 
-#### Why ?
+### Why ?
 We have apps which reward you for payments, apps which reward you for paying bills on time but none promoting education.
-Being currently in online scenario we provide a  way to motivate students and encourage them to attend classes and complete assignments by giving them rewards.
-This is where “Rewardz” comes into play. It rewards you for your hardwork and will help you gain more by using coupons
+Being currently in online scenario we will provide a way to motivate students and encourage them to attend classes and complete assignments and in turn will give them rewards.
+This is where “Rewardz” comes into play. It rewards you for your hardwork and will help you gain more knowledge and benefits by using coupons.
 
-##### Tech. Stack
+### Tech Stack
 - React Native , Firebase-Firestore , Cloud Functions
 
 ![Screenshot_1607789914](https://user-images.githubusercontent.com/55044774/101989226-ee0cb980-3cc4-11eb-955f-26f29f3224f8.png)
