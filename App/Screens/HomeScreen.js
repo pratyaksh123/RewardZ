@@ -7,6 +7,9 @@ import {
   ActivityIndicator,
   ImageBackground,
   View,
+  TouchableHighlight,
+  Modal,
+  FlatList,
 } from 'react-native';
 import {
   Appbar,
@@ -15,16 +18,19 @@ import {
   Card,
   Paragraph,
   Button,
-  Divider,
   Menu,
+  List,
 } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import { useState } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   const [score, setScore] = useState(20);
   const [visible, setVisible] = React.useState(false);
+  const [history, setHistory] = useState([]);
   var menuRef;
   const openMenu = () => setVisible(true);
 
@@ -46,6 +52,16 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     fetchData();
+    firestore()
+      .collection('Payments')
+      .get()
+      .then((snapshot) => {
+        const temp = [];
+        snapshot.forEach((doc) => {
+          temp.push({ id: doc.id, data: doc.data() });
+        });
+        setHistory(temp);
+      });
     const subscriber = firestore()
       .collection('Score')
       .doc('RealTimeScore')
@@ -96,11 +112,68 @@ const HomeScreen = ({ navigation }) => {
               />
             }
           >
-            <Menu.Item onPress={() => {}} title="Payment History" />
+            <Menu.Item
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+              title="Payment History"
+            />
           </Menu>
         </View>
       </Appbar.Header>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Your Payment History</Text>
+            <FlatList
+              data={history}
+              renderItem={(t) => {
+                return (
+                  <List.Item
+                    titleStyle={{ color: 'green', fontSize: 15 }}
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                    title={`Payment Recived`}
+                    right={() => (
+                      <Text
+                        style={{ color: 'green', fontSize: 15 }}
+                      >{`₹${t.item.data.value}`}</Text>
+                    )}
+                    left={(props) => (
+                      <Icon
+                        name="check-circle"
+                        size={20}
+                        style={{ alignSelf: 'center' }}
+                        color="green"
+                      />
+                    )}
+                  />
+                );
+              }}
+            />
 
+            <View style={{ flexDirection: 'row' }}>
+              <TouchableHighlight
+                style={{
+                  ...styles.openButton,
+                  backgroundColor: '#eb4934',
+                }}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <ScrollView>
         <Surface style={styles.surface}>
           <Title style={styles.heading}>Your Current Coins</Title>
@@ -172,6 +245,45 @@ const styles = StyleSheet.create({
     width: Dimensions.get('screen').width,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    height: 300,
+    width: 400,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: '#F194FF',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginLeft: Dimensions.get('screen').width / 2 - 40,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 
