@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Text,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   Dimensions,
   ActivityIndicator,
   ImageBackground,
+  View,
 } from 'react-native';
 import {
   Appbar,
@@ -14,6 +15,8 @@ import {
   Card,
   Paragraph,
   Button,
+  Divider,
+  Menu,
 } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import { useState } from 'react';
@@ -21,6 +24,11 @@ import { useState } from 'react';
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [score, setScore] = useState(20);
+  const [visible, setVisible] = React.useState(false);
+  var menuRef;
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
   const fetchData = () => {
     firestore()
       .collection('Assignments')
@@ -70,8 +78,29 @@ const HomeScreen = ({ navigation }) => {
     <>
       <Appbar.Header>
         <Appbar.Content title="Home" />
-        <Appbar.Action icon="dots-vertical" />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={
+              <Appbar.Action
+                ref={menuRef}
+                icon="dots-vertical"
+                onPress={openMenu}
+                color="white"
+              />
+            }
+          >
+            <Menu.Item onPress={() => {}} title="Payment History" />
+          </Menu>
+        </View>
       </Appbar.Header>
+
       <ScrollView>
         <Surface style={styles.surface}>
           <Title style={styles.heading}>Your Current Coins</Title>
@@ -84,6 +113,7 @@ const HomeScreen = ({ navigation }) => {
               style={{
                 width: Dimensions.get('screen').width,
                 height: Dimensions.get('screen').height / 2,
+                marginTop: -40,
               }}
               resizeMode="contain"
             />

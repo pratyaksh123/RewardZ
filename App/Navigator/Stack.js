@@ -2,11 +2,9 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import AuthScreen from '../Screens/AuthScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import PaymentScreen from '../Screens/Payments';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Test from '../Screens/Test';
 
 const bottomnav = createMaterialBottomTabNavigator(
   {
@@ -47,14 +45,8 @@ const Navigator = createStackNavigator(
 
 const Switch = createSwitchNavigator(
   {
-    Auth: {
-      screen: AuthScreen,
-    },
     Home: {
       screen: bottomnav,
-    },
-    Test: {
-      screen: Test,
     },
   },
   {

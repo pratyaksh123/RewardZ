@@ -110,13 +110,18 @@ const PaymentScreen = ({ params }) => {
   const redeemPoints = () => {
     // update the coupons in firestore
     if (score > 50) {
+      firestore().collection('Coupons').add({
+        value: 2000,
+      });
       firestore()
-        .collection('Coupons')
-        .add({
-          value: 2000,
+        .collection('Score')
+        .doc('RealTimeScore')
+        .update({
+          data: score - 50,
         })
         .then(() => {
           fetchCoupons();
+          setModalVisible(!modalVisible);
         });
     } else {
       Alert.alert(
@@ -138,8 +143,8 @@ const PaymentScreen = ({ params }) => {
           height: 200,
         }}
       />
-      <Text style={{ textAlign: 'center', fontSize: 16, marginTop: 20 }}>
-        Now easily pay your fees using razorpay !
+      <Text style={{ textAlign: 'center', fontSize: 14, marginTop: 20 }}>
+        Now easily pay your fees using razorpay and get Rewarded!
       </Text>
       <View style={{ margin: 20 }}>
         <TextInput
@@ -158,14 +163,25 @@ const PaymentScreen = ({ params }) => {
             Pay Now
           </Button>
         ) : (
-          <HelperText
-            type="error"
-            visible={() => {
-              return text >= 5000;
-            }}
-          >
-            Minimum Amount is INR 5000
-          </HelperText>
+          <>
+            <Button
+              style={{ width: 150, alignSelf: 'center' }}
+              mode="contained"
+              onPress={_onPressButton}
+              disabled={true}
+            >
+              Pay Now
+            </Button>
+            <HelperText
+              style={{ textAlign: 'center' }}
+              type="error"
+              visible={() => {
+                return text >= 5000;
+              }}
+            >
+              Minimum Amount is INR 5000
+            </HelperText>
+          </>
         )}
         {couponApplied.applied && (
           <>
