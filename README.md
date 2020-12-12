@@ -1,4 +1,5 @@
-# Rewardz
+# Rewardz  ![1426735](https://user-images.githubusercontent.com/55044774/101991471-dccaa980-3cd2-11eb-81ad-fbc8c1acbc95.png)
+
 Earn while you learn !
 
 #### What ?
