@@ -18,7 +18,7 @@ This is where “Rewardz” comes into play. It rewards you for your hardwork an
 ![Screenshot_1607789861](https://user-images.githubusercontent.com/55044774/101989316-90c53800-3cc5-11eb-887d-561572dd3c77.png)
 
 ### API Used
-https://razorpay.com/docs/api/payments/
+https://razorpay.com/docs/api/payments/ <br/>
 https://razorpay.com/docs/api/orders/
 
 
