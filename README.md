@@ -2,7 +2,7 @@
 Earn while you learn !
 
 ### What ?
-This apps lets you earn credits while you do payments like your fees,attend classes, learn stuff and solve assignments. You can later redeem those credits for coupons for various uses.
+This apps lets you earn credits while you do payments like your fees,attend classes, learn stuff and solve assignments. You can later redeem those credits for coupons for various uses. Also for institutes this app can serve as a complete solution to automate finanical transactions ( Collection of education fee etc. )
 
 ### Why ?
 We have apps which reward you for payments, apps which reward you for paying bills on time but none promoting education.
