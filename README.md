@@ -45,10 +45,3 @@ react-native start
 ```
 react-native run-android
 ```
-## Team
-
-|Name|
-|--|
-|[Pratyaksh Tyagi](https://github.com/pratyaksh123)|
-|[Hard Savani](https://github.com/HardSavani)|
-
