@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  ActivityIndicator,
+  ImageBackground,
+} from 'react-native';
 import {
   Appbar,
   Title,
@@ -21,7 +28,9 @@ const HomeScreen = ({ navigation }) => {
       .then((snapshot) => {
         const temp = [];
         snapshot.forEach((doc) => {
-          temp.push({ id: doc.id, data: doc.data() });
+          if (!doc.data().done) {
+            temp.push({ id: doc.id, data: doc.data() });
+          }
         });
         setData(temp);
       });
@@ -68,37 +77,50 @@ const HomeScreen = ({ navigation }) => {
           <Title style={styles.heading}>Your Current Coins</Title>
           <Text style={styles.coins}>{score}</Text>
         </Surface>
-
-        <Text style={{ fontSize: 12, marginLeft: 15, marginTop: 10 }}>
-          Complete the following Assignments to earn points!
-        </Text>
-        {data.length === 0 && <Text>All Done !!</Text>}
+        {data && data.length === 0 && (
+          <>
+            <ImageBackground
+              source={require('../Assets/Images/checklist.png')}
+              style={{
+                width: Dimensions.get('screen').width,
+                height: Dimensions.get('screen').height / 2,
+              }}
+              resizeMode="contain"
+            />
+            <Text style={{ fontSize: 20, textAlign: 'center' }}>
+              All Tasks Done For Now !
+            </Text>
+          </>
+        )}
+        {data && data.length !== 0 && (
+          <Text style={{ fontSize: 12, marginLeft: 15, marginTop: 10 }}>
+            Complete the following Assignments to earn points!
+          </Text>
+        )}
 
         {data ? (
           data.map((t) => {
-            if (!t.data.done) {
-              return (
-                <Card key={t.data.title} style={{ margin: 15, elevation: 6 }}>
-                  <Card.Content>
-                    <Title>{t.data.title}</Title>
-                    <Paragraph>Due Date -{t.data.due}</Paragraph>
-                  </Card.Content>
-                  <Card.Cover source={{ uri: t.data.url }} />
-                  <Card.Actions>
-                    <Button
-                      onPress={() => {
-                        update(t.id);
-                      }}
-                    >
-                      Mark as Done
-                    </Button>
-                  </Card.Actions>
-                </Card>
-              );
-            }
+            return (
+              <Card key={t.data.title} style={{ margin: 15, elevation: 6 }}>
+                <Card.Content>
+                  <Title>{t.data.title}</Title>
+                  <Paragraph>Due Date -{t.data.due}</Paragraph>
+                </Card.Content>
+                <Card.Cover source={{ uri: t.data.url }} />
+                <Card.Actions>
+                  <Button
+                    onPress={() => {
+                      update(t.id);
+                    }}
+                  >
+                    Mark as Done
+                  </Button>
+                </Card.Actions>
+              </Card>
+            );
           })
         ) : (
-          <></>
+          <ActivityIndicator />
         )}
       </ScrollView>
     </>

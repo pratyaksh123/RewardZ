@@ -1,7 +1,8 @@
 const functions = require('firebase-functions');
 const Razorpay = require('razorpay');
-var key_id = 'rzp_test_pwiXBQGNe4sFik';
-var key_secret = '2lizSTEOzZpzBFsohYaYUoVn';
+const crypto = require('crypto');
+var key_id = 'rzp_test_xiuvC2dEYKTxOR';
+var key_secret = 'F3nNFpvlkoQsKpG2GNmMcJMW';
 var instance = new Razorpay({
   key_id: key_id,
   key_secret: key_secret,
@@ -22,6 +23,22 @@ exports.order = functions.https.onCall(async (data) => {
     }
     orderData = order;
   });
-  console.log(orderData);
   return orderData;
+});
+
+exports.confirmOrder = functions.https.onCall(async (data) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = data;
+  const text = razorpay_order_id + '|' + razorpay_payment_id;
+  var signature = crypto
+    .createHmac('sha256', key_secret)
+    .update(text)
+    .digest('hex');
+
+  if (signature === razorpay_signature) {
+    console.log('PAYMENT SUCCESSFULL');
+
+    return 'Payment Successfull !';
+  } else {
+    return 'Payment Error!';
+  }
 });

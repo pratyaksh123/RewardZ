@@ -6,6 +6,7 @@ import AuthScreen from '../Screens/AuthScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import PaymentScreen from '../Screens/Payments';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Test from '../Screens/Test';
 
 const bottomnav = createMaterialBottomTabNavigator(
   {
@@ -51,6 +52,9 @@ const Switch = createSwitchNavigator(
     },
     Home: {
       screen: bottomnav,
+    },
+    Test: {
+      screen: Test,
     },
   },
   {
