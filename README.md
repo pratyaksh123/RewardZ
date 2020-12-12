@@ -5,6 +5,13 @@ Earn while you learn !
 ##### Tech. Stack
 - React Native , Firebase
 
+![Screenshot_1607789914](https://user-images.githubusercontent.com/55044774/101989226-ee0cb980-3cc4-11eb-955f-26f29f3224f8.png)
+![Screenshot_1607789876](https://user-images.githubusercontent.com/55044774/101989252-12689600-3cc5-11eb-8856-d52892c24318.png)
+![Screenshot_1607790163](https://user-images.githubusercontent.com/55044774/101989276-4479f800-3cc5-11eb-85af-f7b0964d80ac.png)
+
+
+
+
 ## Steps to setup locally and run:
 If you run into any errors , refer to the Environment setup on the official React Native Docs - [Environment-Setup](https://reactnative.dev/docs/environment-setup)
 
