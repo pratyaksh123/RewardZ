@@ -3,7 +3,7 @@ Earn while you learn !
 
 
 ##### Tech. Stack
-- React Native , Firebase
+- React Native , Firebase-Firestore , Cloud Functions
 
 ![Screenshot_1607789914](https://user-images.githubusercontent.com/55044774/101989226-ee0cb980-3cc4-11eb-955f-26f29f3224f8.png)
 ![Screenshot_1607789876](https://user-images.githubusercontent.com/55044774/101989252-12689600-3cc5-11eb-8856-d52892c24318.png)
