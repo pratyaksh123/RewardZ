@@ -43,13 +43,13 @@ const PaymentScreen = ({ params }) => {
           sucess: true,
           data: data,
         });
+        Alert.alert(res.data, 'Thank You');
         if (couponApplied.applied) {
           firestore()
             .collection('Coupons')
             .doc(couponApplied.id)
             .delete()
             .then(() => {
-              Alert.alert(res.data, 'Thank You');
               fetchCoupons();
             });
         }

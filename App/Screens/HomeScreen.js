@@ -50,8 +50,7 @@ const HomeScreen = ({ navigation }) => {
       });
   };
 
-  useEffect(() => {
-    fetchData();
+  const fetchPayments = () => {
     firestore()
       .collection('Payments')
       .get()
@@ -62,6 +61,14 @@ const HomeScreen = ({ navigation }) => {
         });
         setHistory(temp);
       });
+  };
+
+  navigation.addListener('didFocus', () => {
+    fetchPayments();
+  });
+  useEffect(() => {
+    fetchData();
+    fetchPayments();
     const subscriber = firestore()
       .collection('Score')
       .doc('RealTimeScore')
@@ -135,7 +142,6 @@ const HomeScreen = ({ navigation }) => {
             <FlatList
               data={history}
               renderItem={(t) => {
-                console.log(t);
                 if (t.item.data.sucess) {
                   return (
                     <List.Item
@@ -287,7 +293,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     height: 300,
-    width: 400,
+    width: Dimensions.get('screen').width - 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
