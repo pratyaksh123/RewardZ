@@ -1,5 +1,5 @@
 # Rewardz ![1426735](https://user-images.githubusercontent.com/55044774/101991573-ac373f80-3cd3-11eb-95ad-1847e3169ea0.png)
-Earn while you learn !
+Earn while you learn  !
 
 ### What ?
 This apps lets you earn credits while you do payments like your fees,attend classes, learn stuff and solve assignments. You can later redeem those credits for coupons for various uses. Also for institutes this app can serve as a complete solution to automate finanical transactions ( Collection of education fee etc. )
